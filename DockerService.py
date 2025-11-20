@@ -1,7 +1,6 @@
 from typing import Tuple
 from .BaseService import BaseService
-from Helpers.ResponseTemplate import ResponseTemplate
-import json
+from ..Helpers.ResponseTemplate import ResponseTemplate
 import docker
 
 
@@ -30,8 +29,11 @@ class DockerService(BaseService):
                 print(f"Container '{container_name}' is running.")
                 return True, None
             else:
-                return False, f"Container '{container_name}' is NOT running. Status: {container.status}"
+                return (
+                    False,
+                    f"Container '{container_name}' is NOT running. Status: {container.status}",
+                )
         except docker.errors.NotFound:
             return False, f"Container '{container_name}' does not exist."
         except docker.errors.DockerException:
-            return False, f"Docker service does not exist."
+            return False, "Docker service does not exist."

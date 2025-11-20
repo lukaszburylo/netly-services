@@ -1,7 +1,6 @@
 from .BaseService import BaseService
-from Helpers.ResponseTemplate import ResponseTemplate
+from ..Helpers.ResponseTemplate import ResponseTemplate
 import psutil
-import json
 
 
 class ProcessService(BaseService):
@@ -21,13 +20,13 @@ class ProcessService(BaseService):
 
     @staticmethod
     def __get_processes(parameters) -> str:
-        #input = json.loads(input)
+        # input = json.loads(input)
         for proc in psutil.process_iter(["pid", "name"]):
             try:
                 if proc.info["name"] == input.get("process_name"):
                     response = dict()
-                    response['pid'] = proc.pid
-                    response['name'] = proc.info["name"]
+                    response["pid"] = proc.pid
+                    response["name"] = proc.info["name"]
                     return True, response
             except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
                 return "False", ""
