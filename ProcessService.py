@@ -10,17 +10,17 @@ class ProcessService(BaseService):
         return "process"
 
     @staticmethod
-    def get_data(input: str | None) -> str:
-        result, data = ProcessService.__get_processes(input)
+    def get_data(parameters: str = None) -> str:
+        result, data = ProcessService.__get_processes(parameters)
         return ResponseTemplate(
             service_name=ProcessService.get_service_name(),
             result_status=result,
-            input_data=input,
+            input_data=parameters,
             output_data=data,
         )
 
     @staticmethod
-    def __get_processes(input) -> str:
+    def __get_processes(parameters) -> str:
         #input = json.loads(input)
         for proc in psutil.process_iter(["pid", "name"]):
             try:

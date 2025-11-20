@@ -1,5 +1,5 @@
 from .BaseService import BaseService
-from Helpers.ResponseTemplate import ResponseTemplate
+from ..Helpers.ResponseTemplate import ResponseTemplate
 import shutil
 
 

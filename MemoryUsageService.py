@@ -1,5 +1,5 @@
 from .BaseService import BaseService
-from Helpers.ResponseTemplate import ResponseTemplate
+from ..Helpers.ResponseTemplate import ResponseTemplate
 import psutil
 
 
@@ -9,7 +9,7 @@ class MemoryUsageService(BaseService):
         return "memory_usage"
 
     @staticmethod
-    def get_data(input_data: str | None) -> str:
+    def get_data(parameters: str = None) -> ResponseTemplate:
         return ResponseTemplate(
             MemoryUsageService.get_service_name(),
             MemoryUsageService.__get_memory_usage(),

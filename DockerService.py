@@ -1,3 +1,4 @@
+from typing import Tuple
 from .BaseService import BaseService
 from Helpers.ResponseTemplate import ResponseTemplate
 import json
@@ -10,8 +11,8 @@ class DockerService(BaseService):
         return "docker"
 
     @staticmethod
-    def get_data(input: str | None) -> str:
-        result, data = DockerService.__get_container(input)
+    def get_data(parameters: str = None) -> ResponseTemplate:
+        result, data = DockerService.__get_container(parameters)
         return ResponseTemplate(
             service_name=DockerService.get_service_name(),
             result_status=result,
@@ -20,7 +21,7 @@ class DockerService(BaseService):
         )
 
     @staticmethod
-    def __get_container(input) -> str:
+    def __get_container(parameters) -> Tuple[bool, str]:
         container_name = input.get("container_name")
         try:
             client = docker.from_env()
