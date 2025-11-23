@@ -7,7 +7,7 @@ setup(
     version="0.0.3",  # wersja paczki
     packages=find_packages(),  # automatyczne znalezienie folderów z __init__.py
     install_requires=[  # opcjonalne zależności
-        "netly_shared @ git+https://github.com/lukaszburylo/netly-shared.git@main#egg=netly_shared",
+        "netly_shared @ git+https://github.com/lukaszburylo/netly-shared.git#egg=netly_shared",
         "docker",
         "psutil",
     ],
