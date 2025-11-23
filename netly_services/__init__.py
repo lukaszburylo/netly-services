@@ -1,3 +1,4 @@
+"""Netly Services Package Initialization"""
 import pkgutil
 import importlib
 import inspect
@@ -16,7 +17,7 @@ for _finder, module_name, _ispkg in pkgutil.iter_modules([_pkg_path]):
         continue
     try:
         module = importlib.import_module(f"{_package}.{module_name}")
-    except Exception:
+    except Exception: # pylint: disable=broad-except
         # pomiń moduły które nie dają się zaimportować
         continue
     __all__.append(module_name)
@@ -29,7 +30,7 @@ for _finder, module_name, _ispkg in pkgutil.iter_modules([_pkg_path]):
                 # oczekujemy, że klasa ma statyczną/metodę get_service_name()
                 try:
                     name = obj.get_service_name()
-                except Exception:
+                except Exception: # pylint: disable=broad-except
                     continue
                 SERVICES[name] = obj
         except TypeError:

@@ -1,0 +1,4 @@
+setuptools
+psutil
+docker
+git+https://github.com/lukaszburylo/netly-shared.git@main#egg=netly_shared
